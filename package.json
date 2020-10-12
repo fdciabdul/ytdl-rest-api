@@ -5,7 +5,8 @@
   "main": "server.js",
   "dependencies": {
     "express": "^4.17.1",
-    "ytdl-core": "^3.3.0"
+    "ytdl-core": "^3.3.0",
+    "youtube-audio-stream": "^0.3.6"
   },
   "devDependencies": {},
   "scripts": {
