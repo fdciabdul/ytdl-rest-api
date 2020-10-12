@@ -6,7 +6,10 @@
   "dependencies": {
     "express": "^4.17.1",
     "ytdl-core": "^3.3.0",
-    "youtube-audio-stream": "^0.3.6"
+    "cors": "^2.8.5",
+    "ssl-express-www": "^3.0.7",
+    "ytpl": "^1.0.1",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {},
   "scripts": {
