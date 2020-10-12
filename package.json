@@ -1,0 +1,28 @@
+{
+  "name": "ytdl-rest-api",
+  "version": "1.0.0",
+  "description": "Youtube DL but for Rest API",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ytdl-core": "^3.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm start",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fdciabdul/ytdl-rest-api.git"
+  },
+  "keywords": [
+    "ytdl"
+  ],
+  "author": "abdul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fdciabdul/ytdl-rest-api/issues"
+  },
+  "homepage": "https://github.com/fdciabdul/ytdl-rest-api#readme"
+}
