@@ -37,6 +37,7 @@ app.get('/mp3', (req, res) => {
     } catch (exception) {
         res.status(500).send(exception)
     }
+})
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
