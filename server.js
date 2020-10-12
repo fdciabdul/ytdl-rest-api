@@ -5,8 +5,9 @@ const app = express();
 //  const data = await ytdl.getInfo(url);
 //  return data;
 //}
-app.get('/:id', async (req, res , err) => {
-const info = await ytdl.getInfo(req.params.id);
+app.get('/', async (req, res , err) => {
+try {
+const info = await ytdl.getInfo(req.query.id);
 const max = info
     .videoDetails
     .thumbnail
@@ -22,9 +23,19 @@ res.json({
    thumbnail: max,
    video:info.formats
 })
-
+} catch (exception) {
+        res.status(500).send(exception)
+    }
 })
+app.get('/mp3', (req, res) => {
 
+    var url = req.query.url;
+    try {
+        console.log("return");
+        youtubeStream(url).pipe(res)
+    } catch (exception) {
+        res.status(500).send(exception)
+    }
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
