@@ -73,7 +73,7 @@ id: info.videoDetails.videoId,
 app.get('/audio', async (req, res, next) => {
   try {
     var url = req.query.id;
-    res.header('Content-Disposition', `attachment; filename= url +".mp3"`);
+    res.header('Content-Disposition', `attachment; filename= "Musiknya_Tuan.mp3"`);
     ytdl(url, {
       format: 'mp3',
       filter: 'audioonly',
@@ -88,7 +88,7 @@ app.get('/audio', async (req, res, next) => {
 app.get('/video', async (req, res, next) => {
   try {
     var url = req.query.id;
-    res.header('Content-Disposition', `attachment; filename="audio.mp4"`);
+    res.header('Content-Disposition', `attachment; filename="video.mp4"`);
     ytdl(url, {
       format: 'mp4',
     }).pipe(res);
