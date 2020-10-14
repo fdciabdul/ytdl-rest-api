@@ -88,9 +88,9 @@ app.get('/audio', async (req, res, next) => {
     ytdl(url, {
       format: 'mp3',
       filter: 'audioonly',
- , requestOptions: {
+      requestOptions: {
       cookie: cookie
-  }
+  },
 }).pipe(res);
 
   } catch (err) {
