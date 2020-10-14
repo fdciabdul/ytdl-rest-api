@@ -62,7 +62,8 @@ id: info.videoDetails.videoId,
     }
   } catch(err) {
     res.statusMessage = "can't download video(s) data. probably wrong url : "+err
-    res.sendStatus(400)
+    res.sendStatus(400) 
+    console.log(err);
   }
 })
 
