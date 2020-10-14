@@ -18,6 +18,26 @@ app.get('/', async (req, res) => {
   let playlistregex = /\/playlist\?list=/;
   let videos = []
   let url = req.query.url;  
+  try {
+    if (playlistregex.test(url)) {
+      ytpl(url)
+        .then(info => info.items)
+        .then(info => {
+          let video
+          for (video of info) {
+            videos.push({
+              title: video.title,
+              id: video.id,
+              duration: video.duration,
+            });
+          }
+          res.json(videos)
+        })
+        .catch(err => { 
+          res.statusMessage = "can't download video(s) data. probably wrong url : "+err
+          res.sendStatus(400)
+        })
+    } else {
       ytdl.getInfo(url , 
       { requestOptions: {
       headers: {
@@ -53,23 +73,23 @@ id: info.videoDetails.videoId,
    thumbnail: max,
    video:info.formats
           });
-          res.json(videos)
+               res.json(videos)
         })
         .catch(err => { 
           res.statusMessage = "can't download video(s) data. probably wrong url : "+err
           res.sendStatus(400)
         })
+    }
   } catch(err) {
     res.statusMessage = "can't download video(s) data. probably wrong url : "+err
-    res.sendStatus(400) 
-    console.log(err);
+    res.sendStatus(400)
   }
 })
 
 app.get('/audio', async (req, res, next) => {
   try {
     var url = req.query.id;
-    res.header('Content-Disposition', `attachment; filename= "Musiknya_Tuan.mp3"`);
+    res.header('Content-Disposition', `attachment; filename="audio.mp3"`);
     ytdl(url, {
       format: 'mp3',
       filter: 'audioonly',
@@ -84,7 +104,7 @@ app.get('/audio', async (req, res, next) => {
 app.get('/video', async (req, res, next) => {
   try {
     var url = req.query.id;
-    res.header('Content-Disposition', `attachment; filename="video.mp4"`);
+    res.header('Content-Disposition', `attachment; filename="audio.mp4"`);
     ytdl(url, {
       format: 'mp4',
     }).pipe(res);
@@ -94,7 +114,6 @@ app.get('/video', async (req, res, next) => {
     res.sendStatus(400)
   }
 });
-
 
 let PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
