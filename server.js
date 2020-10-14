@@ -41,11 +41,11 @@ app.get('/', async (req, res) => {
       ytdl.getInfo(url , 
       { requestOptions: {
       headers: {
-      cookie: cookie,
-      // Optional. If not given, ytdl-core will try to find it.
-      // You can find this by going to a video's watch page, viewing the source,
-      // and searching for "ID_TOKEN".
-      // 'x-youtube-identity-token': 1324,
+      'cookie': cookie,
+      'x-youtube-client-version': '2.20180222',
+      'x-youtube-client-name': '1',
+      'x-client-data': 'CIu2yQEIpLbJAQipncoBCJm1ygEIjrjKAQiZvMoBCKbIygEI58jKAQiCycoBCLTLygEIoc3KAQijzcoBCMrOygEItdXKAQjc1coBCLLXygEIwdfKAQiC2MoBCJ/YygEIodjKAQjE2MoBCOKYywEYsMjKAQ==',
+      
     },
   },
 })
@@ -90,7 +90,11 @@ app.get('/audio', async (req, res, next) => {
       filter: 'audioonly',
       filter: 'audioonly',
       requestOptions: {
-      cookie: cookie
+      'cookie': cookie,
+      'x-youtube-client-version': '2.20180222',
+      'x-youtube-client-name': '1',
+      'x-client-data': 'CIu2yQEIpLbJAQipncoBCJm1ygEIjrjKAQiZvMoBCKbIygEI58jKAQiCycoBCLTLygEIoc3KAQijzcoBCMrOygEItdXKAQjc1coBCLLXygEIwdfKAQiC2MoBCJ/YygEIodjKAQjE2MoBCOKYywEYsMjKAQ=='
+      
       },
 }).pipe(res);
 
