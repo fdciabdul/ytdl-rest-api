@@ -46,7 +46,7 @@ app.get('/', async (req, res) => {
       'cookie': cookie,
       'x-youtube-client-version': '2.20180222',
       'x-youtube-client-name': '1',
-      'x-client-data': 'CIu2yQEIpLbJAQipncoBCJm1ygEIjrjKAQiZvMoBCKbIygEI58jKAQiCycoBCLTLygEIoc3KAQijzcoBCMrOygEItdXKAQjc1coBCLLXygEIwdfKAQiC2MoBCJ/YygEIodjKAQjE2MoBCOKYywEYsMjKAQ==',
+      'x-client-data': data
       
     },
   },
