@@ -2,15 +2,10 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors')
 const app = express();
-require('dotenv').config()
 app.enable('trust proxy');
 const ytdl = require('ytdl-core');
 const ytpl = require('ytpl');
 const secure = require('ssl-express-www');
-const cookies = process.env.cookie;
-const data = process.env.ydata;
-var proxy = require('express-http-proxy');
-
 app.use(morgan('common'));
 app.use(cors())
 app.use(secure)
@@ -43,9 +38,13 @@ app.get('/', async (req, res) => {
       { requestOptions: {
       headers: {
       'cookie': cookie,
-      'x-youtube-client-version': '2.20180222',
+      'referer':'https://www.youtube.com/InsideHeartz
+      'x-client-data':'CIu2yQEIpLbJAQipncoBCJm1ygEIjrjKAQiZvMoBCKbIygEI58jKAQiCycoBCLTLygEIoc3KAQijzcoBCMrOygEItdXKAQjc1coBCLLXygEIgtjKAQif2MoBCKHYygEIxNjKAQjimMsBGLDIygE=',
+      'x-youtube-client-version':'2.20201013.02.02',
       'x-youtube-client-name': '1',
-      'x-client-data': data
+      'x-youtube-identity-token': 'QUFFLUhqbG1OVUx1UXlJazNsSjdLTE1WYzdyVFJPMEVyQXw=',
+      'x-youtube-device':'cbr=Chrome+Mobile&cbrand=Vivo&cbrver=85.0.4183.127&ceng=WebKit&cengver=537.36&cmodel=1820&cos=Android&cosver=8.1.0&cyear=2013'
+
       
     },
   },
@@ -91,12 +90,16 @@ app.get('/audio', async (req, res, next) => {
       filter: 'audioonly',
       filter: 'audioonly',
       requestOptions: {
+headers: {
       'cookie': cookie,
-      'x-youtube-client-version': '2.20180222',
+      'referer':'https://www.youtube.com/InsideHeartz
+      'x-client-data':'CIu2yQEIpLbJAQipncoBCJm1ygEIjrjKAQiZvMoBCKbIygEI58jKAQiCycoBCLTLygEIoc3KAQijzcoBCMrOygEItdXKAQjc1coBCLLXygEIgtjKAQif2MoBCKHYygEIxNjKAQjimMsBGLDIygE=',
+      'x-youtube-client-version':'2.20201013.02.02',
       'x-youtube-client-name': '1',
-      'x-client-data': 'CIu2yQEIpLbJAQipncoBCJm1ygEIjrjKAQiZvMoBCKbIygEI58jKAQiCycoBCLTLygEIoc3KAQijzcoBCMrOygEItdXKAQjc1coBCLLXygEIwdfKAQiC2MoBCJ/YygEIodjKAQjE2MoBCOKYywEYsMjKAQ=='
-      
+      'x-youtube-identity-token': 'QUFFLUhqbG1OVUx1UXlJazNsSjdLTE1WYzdyVFJPMEVyQXw=',
+      'x-youtube-device':'cbr=Chrome+Mobile&cbrand=Vivo&cbrver=85.0.4183.127&ceng=WebKit&cengver=537.36&cmodel=1820&cos=Android&cosver=8.1.0&cyear=2013'
       },
+},
 }).pipe(res);
 
   } catch (err) {
