@@ -96,7 +96,7 @@ app.get('/audio', async (req, res, next) => {
       // and searching for "ID_TOKEN".
       // 'x-youtube-identity-token': 1324,
     },
-  },
+  }
 }).pipe(res);
 
   } catch (err) {
