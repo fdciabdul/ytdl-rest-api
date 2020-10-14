@@ -8,6 +8,8 @@
     "ytdl-core": "^3.3.0",
     "cors": "^2.8.5",
     "ssl-express-www": "^3.0.7",
+    "dotenv": "^8.2.0",
+    "express-http-proxy": "^1.6.2",
     "ytpl": "^1.0.1",
     "morgan": "^1.10.0"
   },
