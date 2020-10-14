@@ -59,7 +59,6 @@ id: info.videoDetails.videoId,
           res.statusMessage = "can't download video(s) data. probably wrong url : "+err
           res.sendStatus(400)
         })
-    }
   } catch(err) {
     res.statusMessage = "can't download video(s) data. probably wrong url : "+err
     res.sendStatus(400) 
