@@ -88,7 +88,16 @@ app.get('/audio', async (req, res, next) => {
     ytdl(url, {
       format: 'mp3',
       filter: 'audioonly',
-    }).pipe(res);
+ , requestOptions: {
+      headers: {
+      cookie: cookie,
+      // Optional. If not given, ytdl-core will try to find it.
+      // You can find this by going to a video's watch page, viewing the source,
+      // and searching for "ID_TOKEN".
+      // 'x-youtube-identity-token': 1324,
+    },
+  },
+}).pipe(res);
 
   } catch (err) {
     res.statusMessage = err
