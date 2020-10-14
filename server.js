@@ -32,6 +32,8 @@ app.get('/', async (req, res) => {
       'x-youtube-client-version': '2.20180222'
        
     },
+  },
+})
       .then(info => {
           let duration = (info.lengthSeconds/60).toString()
           duration = duration.substring(0, duration.indexOf('.'))+':'+Math.floor((info.lengthSeconds%60).toString())
