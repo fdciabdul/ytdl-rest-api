@@ -15,7 +15,6 @@ app.use(morgan('common'));
 app.use(cors())
 app.use(secure)
 app.use(express.json());
-app.use('/proxy', proxy('www.google.com'));
 app.get('/', async (req, res) => {
   let playlistregex = /\/playlist\?list=/;
   let videos = []
