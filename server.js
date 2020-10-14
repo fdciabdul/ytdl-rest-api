@@ -9,11 +9,13 @@ const ytpl = require('ytpl');
 const secure = require('ssl-express-www');
 const cookies = process.env.cookie;
 const data = process.env.ydata;
+var proxy = require('express-http-proxy');
+
 app.use(morgan('common'));
 app.use(cors())
 app.use(secure)
 app.use(express.json());
-
+app.use('/proxy', proxy('www.google.com'));
 app.get('/', async (req, res) => {
   let playlistregex = /\/playlist\?list=/;
   let videos = []
