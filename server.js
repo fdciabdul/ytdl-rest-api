@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
-const cors = require('cors')
+const cors = require('cors');
+const scrapeYt = require("scrape-yt");
 const app = express();
 app.enable('trust proxy');
 const ytdl = require('ytdl-core');
@@ -103,6 +104,19 @@ headers: {
 }).pipe(res);
 
   } catch (err) {
+    res.statusMessage = err
+    res.sendStatus(400)
+  }
+});
+app.get('/search', async (req, res, next) => {
+var id = req.query.id;
+  try {
+scrapeYt.search(id, {
+    type: "video"
+}).then(videos => {
+    res.json(videos);
+})
+} catch (err) {
     res.statusMessage = err
     res.sendStatus(400)
   }
