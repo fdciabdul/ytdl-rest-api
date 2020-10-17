@@ -95,7 +95,6 @@ app.get('/audio', async (req, res, next) => {
       filter: 'audioonly',
       requestOptions: {
 headers: {
-      headers: {
       'Cookie': cookie,
       'Referer':'https://www.youtube.com/InsideHeartz',
       'X-client-data':'CIm2yQEIo7bJAQipncoBCL6nygEI4qjKAQ==',
