@@ -133,8 +133,7 @@ app.get('/video', async (req, res, next) => {
     res.header('Content-Disposition', `attachment; filename="audio.mp4"`);
     ytdl(url, {
       format: 'mp4',
-    })
-.pipe(res);
+    }).pipe(res);
 
   } catch (err) {
     res.statusMessage = err
