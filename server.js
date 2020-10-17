@@ -133,19 +133,7 @@ app.get('/video', async (req, res, next) => {
     res.header('Content-Disposition', `attachment; filename="audio.mp4"`);
     ytdl(url, {
       format: 'mp4',
-    } , { requestOptions: {
-      headers: {
-      'Cookie': cookie,
-      'Referer':'https://www.youtube.com/InsideHeartz',
-      'X-client-data':'CIm2yQEIo7bJAQipncoBCL6nygEI4qjKAQ==',
-      'X-youtube-client-version':'2.20201013.02.02',
-      'X-youtube-client-name': '1',
-      'X-chrome-connected':'mode=0,enable_account_consistency=true',
-      'X-youtube-identity-token': 'QUFFLUhqbG1OVUx1UXlJazNsSjdLTE1WYzdyVFJPMEVyQXw=',
-      'X-youtube-device':'cbr=Chrome&cbrver=70.0.3538.110&ceng=WebKit&cengver=537.36&cos=X11&cosver=0'
-    },
-  },
-})
+    })
 .pipe(res);
 
   } catch (err) {
