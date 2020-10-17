@@ -109,7 +109,7 @@ headers: {
   }
 });
 app.get('/search', async (req, res, next) => {
-var id = req.query.id;
+var id = req.query.q;
   try {
 scrapeYt.search(id, {
     type: "video"
