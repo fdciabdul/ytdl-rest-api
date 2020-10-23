@@ -38,21 +38,7 @@ app.get('/', async (req, res) => {
           res.sendStatus(400)
         })
     } else {
-      ytdl.getInfo(url , 
-      { requestOptions: {
-      headers: {
-     'Cookie': cookie,
-     'Referer':'https://www.youtube.com/InsideHeartz',
-      'X-client-data':'CIm2yQEIo7bJAQipncoBCL6nygEI4qjKAQ==',
-      'X-youtube-client-version':'2.20201013.02.02',
-      'X-youtube-client-name': '1',
-      'X-youtube-client-version': '2.20201023.02.00',
-      'X-chrome-connected':'mode=0,enable_account_consistency=true',
-      'X-youtube-identity-token': 'QUFFLUhqbG1OVUx1UXlJazNsSjdLTE1WYzdyVFJPMEVyQXw=',
-     'X-youtube-device':'cbr=Chrome&cbrver=70.0.3538.110&ceng=WebKit&cengver=537.36&cos=X11&cosver=0'
-    },
-  },
-})
+      ytdl.getInfo(url)
       .then(info => {
           let duration = (info.lengthSeconds/60).toString()
           duration = duration.substring(0, duration.indexOf('.'))+':'+Math.floor((info.lengthSeconds%60).toString())
@@ -91,22 +77,8 @@ app.get('/audio', async (req, res, next) => {
     res.header('Content-Disposition', `attachment; filename="audio.mp3"`);
     ytdl(url, {
       format: 'mp3',
-      filter: 'audioonly',
-      filter: 'audioonly',
-      requestOptions: {
-headers: {
-      'Cookie': cookie,
-     'Referer':'https://www.youtube.com/InsideHeartz',
-      'X-client-data':'CIm2yQEIo7bJAQipncoBCL6nygEI4qjKAQ==',
-      'X-youtube-client-version':'2.20201013.02.02',
-      'X-youtube-client-name': '1',
-      'X-youtube-client-version': '2.20201023.02.00',
-      'X-chrome-connected':'mode=0,enable_account_consistency=true',
-      'X-youtube-identity-token': 'QUFFLUhqbG1OVUx1UXlJazNsSjdLTE1WYzdyVFJPMEVyQXw=',
-     'X-youtube-device':'cbr=Chrome&cbrver=70.0.3538.110&ceng=WebKit&cengver=537.36&cos=X11&cosver=0'
-     },
-},
-}).pipe(res);
+      filter: 'audioonly'
+      }).pipe(res);
 
   } catch (err) {
     res.statusMessage = err
