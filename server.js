@@ -7,8 +7,7 @@ app.enable('trust proxy');
 const ytdl = require('ytdl-core');
 const ytpl = require('ytpl');
 const secure = require('ssl-express-www');
-//const cookie = "SID=2gezCNJJNrnxhriK7bvOqz8-ZuOE3GIl_lCv7kAYFoiMPHGcrtFQAY7PmOYMI64PTqUlUQ.;__Secure-3PSID=2gezCNJJNrnxhriK7bvOqz8-ZuOE3GIl_lCv7kAYFoiMPHGcZ0UT85gL3Uf5Jt25N-DJCQ.;HSID=A7EDzLn3kae2B1Njb;SSID=AheuwUjMojTWvA5GN;APISID=cgfXh13rQbb4zbLP/AlvlPJ2xBJBsykmS_;SAPISID=m82rJG4AC9nxQ5uG/A1FotfA_gi9pvo91C;__Secure-3PAPISID=m82rJG4AC9nxQ5uG/A1FotfA_gi9pvo91C;VISITOR_INFO1_LIVE=RgZLnZtCoPU;LOGIN_INFO=AFmmF2swRQIhAOXIXsKVou2azuz-kTsCKpbM9szRExAMUD-OwHYiuB6eAiAyPm4Ag3O9rbma7umBK-AG1zoGqyJinh4ia03csp5Nkw:QUQ3MjNmeXJ0UHFRS3dzaTNGRmlWR2FfMDRxa2NRYTFiN3lfTEdOVTc4QUlwbUI4S2dlVngxSG10N3ZqcHZwTHBKano5SkN2dDlPSkhRMUtReE42TkhYeUVWS3kyUE1jY2I1QzA1MDZBaktwd1llWU9lOWE4NWhoZV92aDkxeE9vMTNlcG1uMU9rYjhOaDZWdno2ZzN3TXl5TVNhSjNBRnJaMExrQXpoa2xzRVUteFNWZDI5S0Fn;YSC=8shK-NSCbaY;PREF=al=id&f4=4000000;SIDCC=AJi4QfFT7ZKhKrkdFC7K98GSFG7KOn9KmymtlbsuK65Aa4iMKd357hogNbLAhBhBRPKHSeKvmg;__Secure-3PSIDCC=AJi4QfFNBkYWxC9UvyQWm3vXy535JO_zHoEN7WuAl7lH-oVscImymWtGALUzw61-t-VkU2nR";
-
+const cookie = "HSID=A7EDzLn3kae2B1Njb;SSID=AheuwUjMojTWvA5GN;APISID=cgfXh13rQbb4zbLP/AlvlPJ2xBJBsykmS_;SAPISID=m82rJG4AC9nxQ5uG/A1FotfA_gi9pvo91C;__Secure-3PAPISID=m82rJG4AC9nxQ5uG/A1FotfA_gi9pvo91C;VISITOR_INFO1_LIVE=RgZLnZtCoPU;LOGIN_INFO=AFmmF2swRQIhAOXIXsKVou2azuz-kTsCKpbM9szRExAMUD-OwHYiuB6eAiAyPm4Ag3O9rbma7umBK-AG1zoGqyJinh4ia03csp5Nkw:QUQ3MjNmeXJ0UHFRS3dzaTNGRmlWR2FfMDRxa2NRYTFiN3lfTEdOVTc4QUlwbUI4S2dlVngxSG10N3ZqcHZwTHBKano5SkN2dDlPSkhRMUtReE42TkhYeUVWS3kyUE1jY2I1QzA1MDZBaktwd1llWU9lOWE4NWhoZV92aDkxeE9vMTNlcG1uMU9rYjhOaDZWdno2ZzN3TXl5TVNhSjNBRnJaMExrQXpoa2xzRVUteFNWZDI5S0Fn;PREF=app=desktop&f4=4000000&al=id;SID=2wezCMTUkWN3YS1VmS_DXaEU84J0pZIQdemM8Zry-uzWm8y1njBpLTOpxSfN-EaYCRSiDg.;YSC=HCowA1fmvzo;__Secure-3PSID=2wezCMTUkWN3YS1VmS_DXaEU84J0pZIQdemM8Zry-uzWm8y1dajgWzlBh9TgKapGOwuXfA.;SIDCC=AJi4QfFK0ri9fSfMjMQ4tOJNp6vOb9emETXB_nf2S05mvr2jBlmeEvlSsQSzPMuJl_V0wcbL1r8;__Secure-3PSIDCC=AJi4QfGeWHx-c4uTpU1rXCciO1p0s2fJWU07KrkZhWyD1Tqi8LyR-kHuBwHY9mViVYu1fRh2PA";
 
 
 app.use(morgan('common'));
@@ -42,9 +41,9 @@ app.get('/', async (req, res) => {
       ytdl.getInfo(url , 
       { requestOptions: {
       headers: {
- //     'Cookie': cookie,
-//      'Referer':'https://www.youtube.com/InsideHeartz',
-//      'X-client-data':'CIm2yQEIo7bJAQipncoBCL6nygEI4qjKAQ==',
+     'Cookie': cookie,
+    'Referer':'https://www.youtube.com/InsideHeartz',
+      'X-client-data':'CIm2yQEIo7bJAQipncoBCL6nygEI4qjKAQ==',
       'X-youtube-client-version':'2.20201013.02.02',
       'X-youtube-client-name': '1',
       'X-chrome-connected':'mode=0,enable_account_consistency=true',
@@ -95,9 +94,9 @@ app.get('/audio', async (req, res, next) => {
       filter: 'audioonly',
       requestOptions: {
 headers: {
-//      'Cookie': cookie,
-//      'Referer':'https://www.youtube.com/InsideHeartz',
-//      'X-client-data':'CIm2yQEIo7bJAQipncoBCL6nygEI4qjKAQ==',
+      'Cookie': cookie,
+     'Referer':'https://www.youtube.com/InsideHeartz',
+     'X-client-data':'CIm2yQEIo7bJAQipncoBCL6nygEI4qjKAQ==',
       'X-youtube-client-version':'2.20201013.02.02',
       'X-youtube-client-name': '1',
       'X-chrome-connected':'mode=0,enable_account_consistency=true',
