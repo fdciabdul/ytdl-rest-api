@@ -1,7 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-const scrapeYt = require("scrape-yt");
 const app = express();
 app.enable("trust proxy");
 const ytdl = require("ytdl-core");
@@ -119,7 +118,7 @@ app.get("/video", async (req, res, next) => {
   }
 });
 
-let PORT = process.env.PORT || 8080;
+let PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Listening at port :${PORT}`);
 });
