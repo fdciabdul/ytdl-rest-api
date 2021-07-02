@@ -6,7 +6,8 @@ app.enable("trust proxy");
 const ytdl = require("ytdl-core");
 const ytpl = require("ytpl");
 const secure = require("ssl-express-www");
-
+const Lyrics = require('slyrics')
+const lyrics = new Lyrics()
 const { Client } = require("youtubei");
 const youtube = new Client();
 app.use(morgan("common"));
@@ -16,8 +17,8 @@ app.use(express.json());
 
 
 app.get("/lirik", async (req, res) => {
-//   const songs = await lyrics(req.query.q);
-//   res.json(songs);
+const result = await lyrics.get('melon', req.query.q)
+res.json(result);
 });
 
 app.get("/", async (req, res) => {
