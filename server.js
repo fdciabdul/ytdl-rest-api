@@ -7,7 +7,7 @@ const ytdl = require("ytdl-core");
 const ytpl = require("ytpl");
 const secure = require("ssl-express-www");
 const AZLyrics = require("azlyrics-ext");
-const {lirikLagu} = require("./lirik")
+const {lyrics} = require("./lirik")
 const { Client } = require("youtubei");
 const youtube = new Client();
 app.use(morgan("common"));
@@ -16,11 +16,8 @@ app.use(secure);
 app.use(express.json());
 
 app.get("/lirik", async (req, res) => {
-const songs = await AZLyrics.search(req.query.q);
-
-const { title, lyrics } = await AZLyrics.getTrack(songs[0].url);
-console.log(`Lyrics of ${title}`);
-res.json(lyrics);
+const songs = await lyrics(req.query.q);
+  res.json(songs)
 })
 
 app.get("/", async (req, res) => {
