@@ -17,7 +17,7 @@ app.use(express.json());
 
 
 app.get("/lirik", async (req, res) => {
-const result = await lyrics.get('melon', req.query.q)
+const result = await lyrics.get('AtoZLyrics', req.query.q)
 res.json(result);
 });
 
