@@ -7,13 +7,60 @@ const ytdl = require("ytdl-core");
 const ytpl = require("ytpl");
 const secure = require("ssl-express-www");
 const AZLyrics = require("azlyrics-ext");
-const {lyrics} = require("./lirik")
+
 const { Client } = require("youtubei");
 const youtube = new Client();
 app.use(morgan("common"));
 app.use(cors());
 app.use(secure);
 app.use(express.json());
+async function lyrics(query){
+
+	const pageurl = `https:\/\/search.azlyrics.com/search.php?q=${query}`
+	
+	return axios.get(pageurl)
+		.then( (response)=>{
+			const html = response.data
+			const page = cheerio.load(html)
+			let result = page('.visitedlyr a')[0].attribs['href']
+
+			return axios.get(result)
+				.then((response)=>{
+					const html = response.data
+					const page = cheerio.load(html)
+
+					let lyrics = page('.ringtone')[0].next
+
+					let text = ''
+					while(true){
+						
+						if(lyrics.name == 'b' ){
+							// add title
+							text += lyrics.children[0].data
+						}
+
+
+						lyrics = lyrics.next
+						if (lyrics.type == 'tag' && lyrics.name=='div'){
+							break
+						}
+					}
+					
+					lyrics = text + lyrics.childNodes
+						.filter((tag)=> tag.type=='text').map((tag)=>tag.data).join()
+					test.value=lyrics
+					return(lyrics)
+
+				})
+				.catch((error)=>{
+					console.log("Error consulting", error)
+				})
+
+		}).catch((error)=>{
+			console.log("Error consulting ", error)
+		})
+	
+}
 
 app.get("/lirik", async (req, res) => {
 const songs = await lyrics(req.query.q);
