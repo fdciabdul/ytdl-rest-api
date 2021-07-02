@@ -21,11 +21,13 @@ app.get("/lirik", async (req, res) => {
 const options = {
 	apiKey: req.query.api,
 	title: req.query.lirik,
-	artist: req.query.artis,
+// 	artist: req.query.artis,
 	optimizeQuery: true
 };
 
-getLyrics(options).then((lyrics) => res.json(lyrics));
+
+getSong(options).then((song) =>
+		      res.json(song.lyrics));
 
 })
 
