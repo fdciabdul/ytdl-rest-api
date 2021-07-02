@@ -14,6 +14,14 @@ app.use(morgan("common"));
 app.use(cors());
 app.use(secure);
 app.use(express.json());
+
+app.get("/lirik", async (req, res) => {
+  const jaja = await lirikLagu(req.query.q);
+  console.log(jaja)
+  res.json(jaja);
+
+})
+
 app.get("/", async (req, res) => {
   let playlistregex = /\/playlist\?list=/;
   let videos = [];
