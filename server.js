@@ -6,8 +6,6 @@ app.enable("trust proxy");
 const ytdl = require("ytdl-core");
 const ytpl = require("ytpl");
 const secure = require("ssl-express-www");
-const { getLyrics, getSong } = require('genius-lyrics-api');
-
 
 const {lirikLagu} = require("./lirik")
 const { Client } = require("youtubei");
@@ -18,17 +16,11 @@ app.use(secure);
 app.use(express.json());
 
 app.get("/lirik", async (req, res) => {
-const options = {
-	apiKey: req.query.api,
-	title: req.query.lirik,
-	artist: req.query.artis,
-	optimizeQuery: true
-};
+const songs = await AZLyrics.search(req.query.q);
 
-
-getSong(options).then((song) =>
-		      res.json(song.lyrics));
-
+const { title, lyrics } = await AZLyrics.getTrack(songs[0].url);
+console.log(`Lyrics of ${title}`);
+res.json(lyrics);
 })
 
 app.get("/", async (req, res) => {
