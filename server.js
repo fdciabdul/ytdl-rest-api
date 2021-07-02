@@ -6,6 +6,8 @@ app.enable("trust proxy");
 const ytdl = require("ytdl-core");
 const ytpl = require("ytpl");
 const secure = require("ssl-express-www");
+
+const {lirikLagu} = require("./lirik")
 const { Client } = require("youtubei");
 const youtube = new Client();
 app.use(morgan("common"));
