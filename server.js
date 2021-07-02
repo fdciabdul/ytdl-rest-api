@@ -7,12 +7,6 @@ const ytdl = require("ytdl-core");
 const ytpl = require("ytpl");
 const secure = require("ssl-express-www");
 const { getLyrics, getSong } = require('genius-lyrics-api');
-const options = {
-	apiKey: process.env.API,
-	title: 'Blinding Lights',
-	artist: 'The Weeknd',
-	optimizeQuery: true
-};
 
 
 const {lirikLagu} = require("./lirik")
@@ -24,6 +18,13 @@ app.use(secure);
 app.use(express.json());
 
 app.get("/lirik", async (req, res) => {
+const options = {
+	apiKey: req.query.api,
+	title: req.query.lirik,
+	artist: req.query.artis,
+	optimizeQuery: true
+};
+
 getLyrics(options).then((lyrics) => res.json(lyrics));
 
 })
