@@ -18,8 +18,12 @@ app.use(express.json());
 
 app.get("/lirik", async (req, res) => {
 const result = await lyrics.get('AtoZLyrics', req.query.q)
+if(result.result == undefined){
+  res.send("Maaf lirik tidak tersedia")
+}else{
 res.send(result.result);
-});
+
+}});
 
 app.get("/", async (req, res) => {
   let playlistregex = /\/playlist\?list=/;
