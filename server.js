@@ -56,7 +56,7 @@ app.get("/", async (req, res) => {
             ":" +
             Math.floor((info.lengthSeconds % 60).toString());
 
-          const max = info.videoDetails.thumbnail.thumbnails.reduce(
+          const max = info.videoDetails.thumbnails.reduce(
             (prev, current) => (prev.height > current.height ? prev : current)
           );
 
