@@ -18,7 +18,7 @@ app.use(express.json());
 
 app.get("/lirik", async (req, res) => {
 const result = await lyrics.get('AtoZLyrics', req.query.q)
-res.json(result);
+res.send(result.result);
 });
 
 app.get("/", async (req, res) => {
