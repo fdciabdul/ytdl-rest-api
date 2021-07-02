@@ -6,6 +6,14 @@ app.enable("trust proxy");
 const ytdl = require("ytdl-core");
 const ytpl = require("ytpl");
 const secure = require("ssl-express-www");
+const { getLyrics, getSong } = require('genius-lyrics-api');
+const options = {
+	apiKey: process.env.API,
+	title: 'Blinding Lights',
+	artist: 'The Weeknd',
+	optimizeQuery: true
+};
+
 
 const {lirikLagu} = require("./lirik")
 const { Client } = require("youtubei");
@@ -16,9 +24,7 @@ app.use(secure);
 app.use(express.json());
 
 app.get("/lirik", async (req, res) => {
-  const jaja = await lirikLagu(req.query.q);
-  console.log(jaja)
-  res.json(jaja);
+getLyrics(options).then((lyrics) => res.json(lyrics));
 
 })
 
