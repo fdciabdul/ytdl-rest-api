@@ -10,8 +10,10 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.2",
+    "figlet": "^1.5.0",
+    "genius-lyrics-api": "^3.0.6",
     "morgan": "^1.10.0",
-    "slyrics": "^0.1.42",
+    "scrape-yt": "^1.4.3",
     "ssl-express-www": "^3.0.7",
     "youtubei": "^0.0.1-rc.15",
     "ytdl-core": "^4.8.3",
@@ -19,7 +21,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "npm start",
+    "update": "npm start",
     "start": "node server.js"
   },
   "repository": {
