@@ -1,30 +1,55 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const {lirikLagu} = require("./lirik")
+const scrapeYt = require("scrape-yt");
 const app = express();
+const { getLyrics, getSong } = require("genius-lyrics-api")
 app.enable("trust proxy");
 const ytdl = require("ytdl-core");
 const ytpl = require("ytpl");
 const secure = require("ssl-express-www");
-const Lyrics = require('slyrics')
-const lyrics = new Lyrics()
 const { Client } = require("youtubei");
 const youtube = new Client();
+const figlet = require("figlet");
 app.use(morgan("common"));
 app.use(cors());
 app.use(secure);
 app.use(express.json());
 
-
 app.get("/lirik", async (req, res) => {
-const result = await lyrics.get('melon', req.query.q)
-if(result.result == undefined){
-  res.send("Maaf lirik tidak tersedia")
-}else{
-res.send(result.result);
+  var axios = require("axios");
+  const hasil = []
+  var data = {
+      'api_token': 'e8eb3643022d35e8416b2bf178107637',
+      'url': 'https://siapaytdl.herokuapp.com/audio?id='+req.query.id,
+      'return': 'apple_music,spotify',
+  };
+  
+  axios({
+      method: 'post',
+      url: 'https://api.audd.io/',
+      data: data,
+      headers: { 'Content-Type': 'multipart/form-data' },
+  })
+  .then((response) => {
+    const options = {
+      apiKey: 'klFB-zeSJ0UjpFChFE6zOomAfFXsP3_ElBo_uY-I1ViYbp1mu8zwF3l_jE5CVAMh',
+      title: response.data.result.title,
+      artist: response.data.result.artist,
+      optimizeQuery: true
+    };
+    
+    getLyrics(options).then((lyrics) =>  res.send(lyrics));
+    
+   
+     })
+  .catch((error) =>  {
+      console.log(error);
+  });
+ 
 
-}});
-
+})
 app.get("/", async (req, res) => {
   let playlistregex = /\/playlist\?list=/;
   let videos = [];
@@ -53,26 +78,28 @@ app.get("/", async (req, res) => {
       ytdl
         .getInfo(url)
         .then((info) => {
+          // console.log(info.videoDetails.keywords.toString());
           let duration = (info.lengthSeconds / 60).toString();
           duration =
             duration.substring(0, duration.indexOf(".")) +
             ":" +
             Math.floor((info.lengthSeconds % 60).toString());
 
-          const max = info.videoDetails.thumbnails.reduce((prev, current) =>
-            prev.height > current.height ? prev : current
+          const max = info.videoDetails.thumbnails.reduce(
+            (prev, current) => (prev.height > current.height ? prev : current)
           );
 
           videos.push({
             id: info.videoDetails.videoId,
             title: info.videoDetails.title,
-            keywords: info.videoDetails.keywords.toString(),
+            keywords:info.videoDetails.keywords.toString(),
             description: info.videoDetails.shortDescription,
             length: info.videoDetails.lengthSeconds,
             view: info.videoDetails.viewCount,
             date: info.videoDetails.publishDate,
             thumbnail: max,
             video: info.formats,
+           
           });
           res.json(videos);
         })
@@ -132,7 +159,15 @@ app.get("/video", async (req, res, next) => {
   }
 });
 
-let PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
+  console.log(figlet.textSync('Youtube Grabber ', {
+    font: '',
+    horizontalLayout: 'default',
+    verticalLayout: true,
+    width: 60,
+    whitespaceBreak: true
+}));
+console.log(`Made By  : fdciabdul`);
   console.log(`Listening at port :${PORT}`);
 });
