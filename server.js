@@ -77,6 +77,8 @@ app.get("/", async (req, res) => {
             date: info.videoDetails.publishDate,
             thumbnail: max,
             video: info.formats,
+            artis: info.videoDetails.media.artist,
+            judul: info.videoDetails.media.song
            
           });
           res.json(videos);
