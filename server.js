@@ -97,9 +97,10 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/audio", async (req, res, next) => {
+  const info = await ytdl.getInfo(req.query.id);
   try {
     var url = req.query.id;
-    res.header("Content-Disposition", `attachment; filename="audio.mp3"`);
+    res.header("Content-Disposition", `attachment; filename="${info.videoDetails.title}-fdciabdul.mp3"`);
     ytdl(url, {
       format: "mp3",
       filter: "audioonly",
