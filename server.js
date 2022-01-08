@@ -33,26 +33,7 @@ app.get("/", async (req, res) => {
   let videos = [];
   let url = req.query.url;
   try {
-    if (playlistregex.test(url)) {
-      ytpl(url)
-        .then((info) => info.items)
-        .then((info) => {
-          let video;
-          for (video of info) {
-            videos.push({
-              title: video.title,
-              id: video.id,
-              duration: video.duration,
-            });
-          }
-          res.json(videos);
-        })
-        .catch((err) => {
-          res.statusMessage =
-            "can't download video(s) data. probably wrong url : " + err;
-          res.sendStatus(400);
-        });
-    } else {
+   
       ytdl
         .getInfo(url)
         .then((info) => {
@@ -88,7 +69,7 @@ app.get("/", async (req, res) => {
             "can't download video(s) data. probably wrong url : " + err;
           res.sendStatus(400);
         });
-    }
+    
   } catch (err) {
     res.statusMessage =
       "can't download video(s) data. probably wrong url : " + err;
