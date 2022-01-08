@@ -1,6 +1,6 @@
   {
-  "name": "Button Sample",
-  "description": "A barebones Node.js app using Express 4",
+  "name": "Youtube Rest API",
+  "description": "KUMAHA , DAMANG WA ?",
   "repository": "https://github.com/fdciabdul/ytdl-rest-api",
   "logo": "http://node-js-sample.herokuapp.com/node.svg",
   "keywords": ["node", "express", "static"]
