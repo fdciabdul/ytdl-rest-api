@@ -44,7 +44,6 @@ app.get("/get", async (req, res) => {
           videos.push({
             id: info.videoDetails.videoId,
             title: info.videoDetails.title,
-            keywords:info.videoDetails.keywords.toString(),
             description: info.videoDetails.shortDescription,
             length: info.videoDetails.lengthSeconds,
             view: info.videoDetails.viewCount,
