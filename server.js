@@ -25,7 +25,7 @@ app.get("/get", async (req, res) => {
   let playlistregex = /\/playlist\?list=/;
   let videos = [];
   let url = req.query.url;
-  try {
+
    
       ytdl
         .getInfo(url)
@@ -55,13 +55,11 @@ app.get("/get", async (req, res) => {
             judul: info.videoDetails.media.song
            
           });
+        
           res.json(videos);
+        
         })
-        .catch((err) => {
-          res.statusMessage =
-            "can't download video(s) data. probably wrong url : " + err;
-          res.sendStatus(400);
-        });
+       
     
   } catch (err) {
     res.statusMessage =
