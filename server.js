@@ -16,19 +16,12 @@ app.use(cors());
 app.use(secure);
 app.use(express.json());
 
-app.get("/lirik", async (req, res) => {
-  const options = {
-    apiKey: '_jrlcoPx93aPDnM1i1KsMVIwsAM0hCF2rZ_GzyWNNthgeXl0Ohh8s-cgEnG1R0oJ',
-    title: req.query.judul,
-    artist: req.query.artis,
-    optimizeQuery: true
-  };
-
-  const lirik = await getLyrics(options);
-  res.send(lirik)
+app.get("/", async (req, res) => {
+  
+  res.send("hello welcome");
 })
 
-app.get("/", async (req, res) => {
+app.get("/get", async (req, res) => {
   let playlistregex = /\/playlist\?list=/;
   let videos = [];
   let url = req.query.url;
