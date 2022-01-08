@@ -61,11 +61,7 @@ app.get("/get", async (req, res) => {
         })
        
     
-  } catch (err) {
-    res.statusMessage =
-      "can't download video(s) data. probably wrong url : " + err;
-    res.sendStatus(400);
-  }
+ 
 });
 
 app.get("/audio", async (req, res, next) => {
