@@ -15,8 +15,8 @@
     "morgan": "^1.10.0",
     "scrape-yt": "^1.4.3",
     "ssl-express-www": "^3.0.7",
-    "youtubei": "^0.0.1-rc.15",
-    "ytdl-core": "^4.8.3",
+    "youtubei": "^0.0.1-rc.27",
+    "ytdl-core": "^4.9.2",
     "ytpl": "^2.2.1"
   },
   "devDependencies": {},
